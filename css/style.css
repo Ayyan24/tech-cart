@@ -1,0 +1,476 @@
+/* TechVerse Market — Czone-inspired theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #132238;
+    --primary-light: #1f4b7a;
+    --primary-dark: #0b1627;
+    --accent: #14b8a6;
+    --accent-hover: #0f9488;
+    --bg-light: #f4f7fb;
+    --bg-soft: #e8eef6;
+    --border: #d7e0ec;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --white: #ffffff;
+    --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.08);
+    --shadow-card: 0 22px 45px rgba(15, 23, 42, 0.1);
+    --transition: all 0.25s ease;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(circle at top, rgba(20, 184, 166, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg-light) 28%, #eef3f9 100%);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Header — clean white like Czone */
+.czone-topbar {
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+}
+
+.czone-header {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(215, 224, 236, 0.8);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(16px);
+}
+
+.czone-nav-bar {
+    background: linear-gradient(90deg, var(--primary), #1b3555);
+    color: white;
+}
+
+.glass-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.surface-panel {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(215, 224, 236, 0.85);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(18px);
+}
+
+.section-surface {
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,250,252,0.95));
+    border: 1px solid rgba(215, 224, 236, 0.9);
+    border-radius: 28px;
+    box-shadow: var(--shadow-soft);
+}
+
+.brand-link {
+    color: var(--primary-light);
+    transition: var(--transition);
+}
+.brand-link:hover {
+    color: var(--accent);
+}
+
+.brand-text-primary { color: var(--primary); }
+.brand-text-light { color: var(--primary-light); }
+.brand-text-accent { color: var(--accent); }
+.brand-bg-accent { background: var(--accent); }
+.brand-border-accent { border-color: var(--accent); }
+.brand-icon-soft {
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--accent-hover);
+}
+
+.brand-footer {
+    background: linear-gradient(135deg, #0b1627, #132238, #1f4b7a);
+}
+
+.page-hero {
+    color: var(--white);
+    background: linear-gradient(135deg, #0b1627, #132238, #1f4b7a);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.3);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+}
+
+.page-hero-link {
+    color: rgba(255, 255, 255, 0.72);
+    transition: var(--transition);
+}
+.page-hero-link:hover {
+    color: #5eead4;
+}
+
+.page-hero-current {
+    color: #5eead4;
+}
+
+.table-shell {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(215, 224, 236, 0.85);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+}
+
+.info-callout {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(19, 34, 56, 0.06));
+    border: 1px solid rgba(20, 184, 166, 0.18);
+    border-radius: 22px;
+}
+
+.dashboard-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,252,0.96));
+    border: 1px solid rgba(215, 224, 236, 0.9);
+    border-radius: 24px;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
+}
+
+.dashboard-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--accent-hover);
+}
+
+.brand-btn-primary,
+.brand-btn-accent,
+.brand-btn-outline {
+    transition: var(--transition);
+}
+
+.brand-btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    box-shadow: 0 14px 28px rgba(19, 34, 56, 0.18);
+}
+.brand-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(19, 34, 56, 0.24);
+}
+
+.brand-btn-accent {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: var(--white);
+    box-shadow: 0 14px 28px rgba(20, 184, 166, 0.2);
+}
+.brand-btn-accent:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 34px rgba(20, 184, 166, 0.28);
+}
+
+.brand-btn-outline {
+    border: 1px solid rgba(31, 75, 122, 0.18);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary);
+}
+.brand-btn-outline:hover {
+    border-color: rgba(20, 184, 166, 0.5);
+    color: var(--accent);
+}
+
+/* Mega menu */
+.mega-menu {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: var(--transition);
+}
+.nav-item-categories:hover .mega-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero slider */
+.hero-swiper { height: 420px; }
+@media (max-width: 768px) { .hero-swiper { height: 260px; } }
+
+.swiper-button-next, .swiper-button-prev {
+    color: #fff !important;
+    background: rgba(15, 59, 95, 0.7);
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50%;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover { background: var(--accent); }
+.swiper-button-next:after, .swiper-button-prev:after { font-size: 16px !important; }
+.swiper-pagination-bullet-active {
+    background: var(--accent) !important;
+    width: 18px !important;
+    border-radius: 4px !important;
+}
+
+/* Category cards — image boxes like Czone */
+.cat-card {
+    transition: var(--transition);
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,247,251,0.94));
+    border: 1px solid rgba(215, 224, 236, 0.95);
+    border-radius: 18px;
+    min-width: 110px;
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+.cat-card:hover {
+    border-color: rgba(20, 184, 166, 0.45);
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.1);
+    transform: translateY(-4px);
+}
+.cat-card img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin: 0 auto 10px;
+}
+
+/* ===== Czone Product Box ===== */
+.czone-product-box {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,252,0.96));
+    border: 1px solid rgba(215, 224, 236, 0.92);
+    border-radius: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+    transition: var(--transition);
+}
+.czone-product-box:hover {
+    box-shadow: var(--shadow-card);
+    border-color: rgba(20, 184, 166, 0.32);
+    transform: translateY(-6px);
+}
+
+.czone-badges {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.czone-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+}
+.czone-badge-new { background: #16a34a; color: white; }
+.czone-badge-sale { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: white; }
+
+.czone-product-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    height: 220px;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+    background:
+        radial-gradient(circle at top, rgba(20, 184, 166, 0.12), transparent 38%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+}
+.czone-product-img img {
+    max-height: 168px;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+    filter: drop-shadow(0 20px 28px rgba(15, 23, 42, 0.14));
+}
+.czone-product-box:hover .czone-product-img img { transform: scale(1.06); }
+
+.czone-product-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+.czone-product-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.czone-product-brand {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.czone-stock-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+
+.czone-stock-pill.in-stock {
+    background: rgba(20, 184, 166, 0.12);
+    color: var(--accent-hover);
+}
+
+.czone-stock-pill.out-stock {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+}
+
+.czone-product-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 60px;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+.czone-product-title:hover { color: var(--primary-light); }
+
+.czone-rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.czone-stars {
+    color: #f59e0b;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.czone-rating-copy {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.czone-prices {
+    margin-bottom: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.czone-price {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+}
+.czone-price-old {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-bottom: 0;
+}
+
+.czone-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.czone-btn {
+    flex: 1;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 14px 28px rgba(19, 34, 56, 0.16);
+}
+.czone-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px rgba(19, 34, 56, 0.24);
+}
+.czone-btn-disabled {
+    background: #94a3b8;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.czone-icon-btn {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    border: 1px solid rgba(215, 224, 236, 0.95);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.czone-icon-btn:hover {
+    border-color: rgba(20, 184, 166, 0.35);
+    color: var(--accent);
+    transform: translateY(-1px);
+}
+
+/* Flash sale dark cards */
+.flash-product-box {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+}
+.flash-product-box .czone-product-img { height: 160px; }
+
+/* Section titles like Czone */
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-dark);
+    border-bottom: 3px solid rgba(20, 184, 166, 0.45);
+    display: inline-block;
+    padding-bottom: 6px;
+}
+
+/* Legacy alias */
+.product-card { transition: var(--transition); }
+
+/* Admin/Vendor sidebar */
+.sidebar { height: calc(100vh - 64px); }
+@media (max-width: 1024px) {
+    .sidebar { transform: translateX(-100%); transition: var(--transition); }
+    .sidebar.open { transform: translateX(0); }
+}
