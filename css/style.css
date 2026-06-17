@@ -3,54 +3,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --primary: #132238;
-    --primary-light: #1f4b7a;
-    --primary-dark: #0b1627;
-    --accent: #14b8a6;
-    --accent-hover: #0f9488;
-    --bg-light: #f4f7fb;
-    --bg-soft: #e8eef6;
-    --border: #d7e0ec;
-    --text-dark: #0f172a;
-    --text-muted: #64748b;
+    --primary: #1e1b4b;
+    --primary-light: #312e81;
+    --primary-dark: #0f0d2e;
+    --accent: #f97316;
+    --accent-hover: #ea6c0a;
+    --accent-light: rgba(249, 115, 22, 0.12);
+    --bg-light: #f5f6fa;
+    --bg-soft: #edeef5;
+    --border: #e2e4ed;
+    --text-dark: #111111;
+    --text-muted: #6b7280;
     --white: #ffffff;
-    --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.08);
-    --shadow-card: 0 22px 45px rgba(15, 23, 42, 0.1);
-    --transition: all 0.25s ease;
+    --shadow-soft: 0 2px 10px rgba(30, 27, 75, 0.08);
+    --shadow-card: 0 6px 20px rgba(30, 27, 75, 0.14);
+    --transition: all 0.22s ease;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background:
-        radial-gradient(circle at top, rgba(20, 184, 166, 0.08), transparent 28%),
-        linear-gradient(180deg, #f8fbff 0%, var(--bg-light) 28%, #eef3f9 100%);
+    background: var(--bg-light);
     color: var(--text-dark);
     overflow-x: hidden;
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #cccccc; border-radius: 4px; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Header — clean white like Czone */
+/* =================== TOP BAR =================== */
 .czone-topbar {
-    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    background: var(--primary-dark);
     color: rgba(255,255,255,0.85);
     font-size: 12px;
 }
 
+/* =================== HEADER =================== */
 .czone-header {
-    background: rgba(255, 255, 255, 0.92);
-    border-bottom: 1px solid rgba(215, 224, 236, 0.8);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-    backdrop-filter: blur(16px);
+    background: var(--white);
+    border-bottom: 3px solid var(--accent);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .czone-nav-bar {
-    background: linear-gradient(90deg, var(--primary), #1b3555);
+    background: var(--primary);
     color: white;
 }
 
@@ -59,23 +58,24 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
+/* =================== SURFACE PANELS =================== */
 .surface-panel {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(215, 224, 236, 0.85);
-    border-radius: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
     box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(18px);
 }
 
 .section-surface {
-    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,250,252,0.95));
-    border: 1px solid rgba(215, 224, 236, 0.9);
-    border-radius: 28px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
     box-shadow: var(--shadow-soft);
 }
 
+/* =================== UTILITY COLORS =================== */
 .brand-link {
-    color: var(--primary-light);
+    color: var(--primary);
     transition: var(--transition);
 }
 .brand-link:hover {
@@ -88,19 +88,21 @@ body {
 .brand-bg-accent { background: var(--accent); }
 .brand-border-accent { border-color: var(--accent); }
 .brand-icon-soft {
-    background: rgba(20, 184, 166, 0.12);
-    color: var(--accent-hover);
+    background: rgba(249, 115, 22, 0.12);
+    color: var(--accent);
 }
 
+/* =================== FOOTER =================== */
 .brand-footer {
-    background: linear-gradient(135deg, #0b1627, #132238, #1f4b7a);
+    background: linear-gradient(135deg, #0f0d2e 0%, #1e1b4b 100%);
 }
 
+/* =================== PAGE HERO (breadcrumb bar) =================== */
 .page-hero {
     color: var(--white);
-    background: linear-gradient(135deg, #0b1627, #132238, #1f4b7a);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.3);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 .page-hero-link {
@@ -108,31 +110,33 @@ body {
     transition: var(--transition);
 }
 .page-hero-link:hover {
-    color: #5eead4;
+    color: #fcd34d;
 }
 
 .page-hero-current {
-    color: #5eead4;
+    color: #fcd34d;
 }
 
+/* =================== TABLE =================== */
 .table-shell {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(215, 224, 236, 0.85);
-    border-radius: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
     box-shadow: var(--shadow-soft);
 }
 
 .info-callout {
-    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08), rgba(19, 34, 56, 0.06));
-    border: 1px solid rgba(20, 184, 166, 0.18);
-    border-radius: 22px;
+    background: rgba(218, 37, 28, 0.06);
+    border: 1px solid rgba(218, 37, 28, 0.18);
+    border-radius: 4px;
 }
 
+/* =================== DASHBOARD =================== */
 .dashboard-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,249,252,0.96));
-    border: 1px solid rgba(215, 224, 236, 0.9);
-    border-radius: 24px;
-    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.07);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
 }
 
 .dashboard-icon {
@@ -141,11 +145,12 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 16px;
-    background: rgba(20, 184, 166, 0.12);
-    color: var(--accent-hover);
+    border-radius: 6px;
+    background: var(--accent-light);
+    color: var(--accent);
 }
 
+/* =================== BUTTONS =================== */
 .brand-btn-primary,
 .brand-btn-accent,
 .brand-btn-outline {
@@ -153,36 +158,34 @@ body {
 }
 
 .brand-btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    background: var(--primary);
     color: var(--white);
-    box-shadow: 0 14px 28px rgba(19, 34, 56, 0.18);
+    box-shadow: 0 2px 8px rgba(30, 27, 75, 0.25);
 }
 .brand-btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 16px 30px rgba(19, 34, 56, 0.24);
+    background: var(--primary-light);
 }
 
 .brand-btn-accent {
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    background: linear-gradient(135deg, #f97316, #ea6c0a);
     color: var(--white);
-    box-shadow: 0 14px 28px rgba(20, 184, 166, 0.2);
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
 }
 .brand-btn-accent:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 18px 34px rgba(20, 184, 166, 0.28);
+    background: linear-gradient(135deg, #ea6c0a, #d96008);
 }
 
 .brand-btn-outline {
-    border: 1px solid rgba(31, 75, 122, 0.18);
-    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid var(--primary);
+    background: transparent;
     color: var(--primary);
 }
 .brand-btn-outline:hover {
-    border-color: rgba(20, 184, 166, 0.5);
-    color: var(--accent);
+    background: var(--primary);
+    color: var(--white);
 }
 
-/* Mega menu */
+/* =================== MEGA MENU =================== */
 .mega-menu {
     visibility: hidden;
     opacity: 0;
@@ -195,65 +198,138 @@ body {
     transform: translateY(0);
 }
 
-/* Hero slider */
+/* =================== HERO SLIDER =================== */
 .hero-swiper { height: 420px; }
-@media (max-width: 768px) { .hero-swiper { height: 260px; } }
+@media (max-width: 768px) { .hero-swiper { height: 240px; } }
 
 .swiper-button-next, .swiper-button-prev {
     color: #fff !important;
-    background: rgba(15, 59, 95, 0.7);
-    width: 42px !important;
-    height: 42px !important;
+    background: rgba(249, 115, 22, 0.9);
+    width: 38px !important;
+    height: 38px !important;
     border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 .swiper-button-next:hover, .swiper-button-prev:hover { background: var(--accent); }
-.swiper-button-next:after, .swiper-button-prev:after { font-size: 16px !important; }
+.swiper-button-next:after, .swiper-button-prev:after { font-size: 14px !important; }
 .swiper-pagination-bullet-active {
     background: var(--accent) !important;
-    width: 18px !important;
-    border-radius: 4px !important;
+    width: 20px !important;
+    border-radius: 2px !important;
 }
 
-/* Category cards — image boxes like Czone */
+/* =================== CZONE HOMEPAGE LAYOUT =================== */
+/* Left sidebar category panel — like Czone */
+.czone-home-layout {
+    display: flex;
+    gap: 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.czone-sidebar-cats {
+    width: 220px;
+    min-width: 220px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    box-shadow: var(--shadow-soft);
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.czone-sidebar-cats ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.czone-sidebar-cats li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    border-bottom: 1px solid #f0f0f0;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.czone-sidebar-cats li a:hover {
+    background: linear-gradient(90deg, rgba(249,115,22,0.1), transparent);
+    color: var(--accent);
+    padding-left: 22px;
+    border-left: 3px solid var(--accent);
+}
+
+.czone-sidebar-cats li a i {
+    width: 18px;
+    text-align: center;
+    color: var(--primary);
+    font-size: 13px;
+}
+
+.czone-sidebar-cats li a:hover i {
+    color: var(--accent);
+}
+
+.czone-sidebar-header {
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* =================== CATEGORY SCROLL STRIP =================== */
 .cat-card {
     transition: var(--transition);
-    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(244,247,251,0.94));
-    border: 1px solid rgba(215, 224, 236, 0.95);
-    border-radius: 18px;
-    min-width: 110px;
-    padding: 16px 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    min-width: 100px;
+    padding: 14px 10px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
 }
 .cat-card:hover {
-    border-color: rgba(20, 184, 166, 0.45);
-    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.1);
-    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.18);
+    transform: translateY(-3px);
 }
 .cat-card img {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
 }
 
-/* ===== Czone Product Box ===== */
+/* =================== CZONE PRODUCT BOX =================== */
 .czone-product-box {
-    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,252,0.96));
-    border: 1px solid rgba(215, 224, 236, 0.92);
-    border-radius: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+    box-shadow: var(--shadow-soft);
     transition: var(--transition);
 }
 .czone-product-box:hover {
-    box-shadow: var(--shadow-card);
-    border-color: rgba(20, 184, 166, 0.32);
-    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(30, 27, 75, 0.15);
+    border-color: var(--accent);
+    transform: translateY(-4px);
 }
 
 .czone-badges {
@@ -268,41 +344,38 @@ body {
 .czone-badge {
     font-size: 10px;
     font-weight: 700;
-    padding: 5px 10px;
-    border-radius: 999px;
+    padding: 4px 8px;
+    border-radius: 2px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+    letter-spacing: 0.04em;
 }
-.czone-badge-new { background: #16a34a; color: white; }
-.czone-badge-sale { background: linear-gradient(135deg, var(--accent), var(--accent-hover)); color: white; }
+.czone-badge-new { background: #059669; color: white; }
+.czone-badge-sale { background: linear-gradient(135deg, #f97316, #ea6c0a); color: white; }
 
 .czone-product-img {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
-    height: 220px;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.85);
-    background:
-        radial-gradient(circle at top, rgba(20, 184, 166, 0.12), transparent 38%),
-        linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+    padding: 20px;
+    height: 200px;
+    border-bottom: 1px solid var(--border);
+    background: #fafafa;
 }
 .czone-product-img img {
-    max-height: 168px;
+    max-height: 160px;
     max-width: 100%;
     object-fit: contain;
-    transition: transform 0.25s ease;
-    filter: drop-shadow(0 20px 28px rgba(15, 23, 42, 0.14));
+    transition: transform 0.22s ease;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.1));
 }
-.czone-product-box:hover .czone-product-img img { transform: scale(1.06); }
+.czone-product-box:hover .czone-product-img img { transform: scale(1.05); }
 
 .czone-product-body {
-    padding: 18px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 10px;
+    gap: 8px;
 }
 
 .czone-product-top {
@@ -317,49 +390,49 @@ body {
     font-weight: 700;
     color: var(--primary-light);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
 }
 
 .czone-stock-pill {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     font-size: 10px;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 999px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 2px;
 }
 
 .czone-stock-pill.in-stock {
-    background: rgba(20, 184, 166, 0.12);
-    color: var(--accent-hover);
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
 }
 
 .czone-stock-pill.out-stock {
-    background: rgba(239, 68, 68, 0.12);
-    color: #dc2626;
+    background: rgba(218, 37, 28, 0.1);
+    color: var(--accent);
 }
 
 .czone-product-title {
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--text-dark);
-    line-height: 1.4;
+    line-height: 1.45;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    min-height: 60px;
+    min-height: 56px;
     margin-bottom: 0;
     text-decoration: none;
 }
-.czone-product-title:hover { color: var(--primary-light); }
+.czone-product-title:hover { color: var(--accent); }
 
 .czone-rating-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
     margin-top: auto;
 }
 
@@ -368,11 +441,11 @@ body {
     font-size: 11px;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
 }
 
 .czone-rating-copy {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
 }
 
@@ -380,11 +453,11 @@ body {
     margin-bottom: 2px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 .czone-price {
     display: block;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
     color: var(--primary);
 }
@@ -393,82 +466,121 @@ body {
     font-size: 12px;
     color: var(--text-muted);
     text-decoration: line-through;
-    margin-bottom: 0;
 }
 
 .czone-card-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-top: 4px;
 }
 
 .czone-btn {
     flex: 1;
-    padding: 12px 14px;
+    padding: 10px 12px;
     background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     border: none;
-    border-radius: 14px;
+    border-radius: 3px;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 14px 28px rgba(19, 34, 56, 0.16);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 8px rgba(30, 27, 75, 0.2);
 }
 .czone-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 18px 30px rgba(19, 34, 56, 0.24);
+    background: linear-gradient(135deg, #f97316, #ea6c0a);
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
 }
 .czone-btn-disabled {
-    background: #94a3b8;
-    box-shadow: none;
+    background: #aaa;
     cursor: not-allowed;
 }
 
 .czone-icon-btn {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
-    border: 1px solid rgba(215, 224, 236, 0.95);
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--primary);
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text-muted);
     cursor: pointer;
     transition: var(--transition);
 }
 .czone-icon-btn:hover {
-    border-color: rgba(20, 184, 166, 0.35);
+    border-color: var(--accent);
     color: var(--accent);
-    transform: translateY(-1px);
+    background: rgba(249, 115, 22, 0.06);
 }
 
-/* Flash sale dark cards */
+/* =================== FLASH SALE DARK CARDS =================== */
 .flash-product-box {
-    background: rgba(255, 255, 255, 0.16);
-    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(14px);
 }
-.flash-product-box .czone-product-img { height: 160px; }
+.flash-product-box .czone-product-img { height: 150px; }
 
-/* Section titles like Czone */
+/* =================== SECTION TITLES =================== */
 .section-title {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--text-dark);
-    border-bottom: 3px solid rgba(20, 184, 166, 0.45);
+    color: var(--primary);
+    border-bottom: 3px solid var(--accent);
     display: inline-block;
     padding-bottom: 6px;
 }
 
-/* Legacy alias */
+/* =================== DEAL SECTION =================== */
+.deal-section {
+    background: linear-gradient(135deg, #0f0d2e 0%, #1e1b4b 60%, #312e81 100%);
+}
+
+/* =================== PROMO BANNER STRIP =================== */
+.promo-strip {
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* =================== TRUST BADGES =================== */
+.trust-badge-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-soft);
+}
+
+.trust-badge-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.08));
+    color: var(--accent);
+}
+
+/* =================== LEGACY ALIAS =================== */
 .product-card { transition: var(--transition); }
 
-/* Admin/Vendor sidebar */
+/* =================== ADMIN/VENDOR SIDEBAR =================== */
 .sidebar { height: calc(100vh - 64px); }
 @media (max-width: 1024px) {
     .sidebar { transform: translateX(-100%); transition: var(--transition); }

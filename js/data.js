@@ -1,7 +1,7 @@
 // TechVerse Market — Data storage (localStorage)
 
 (function () {
-    var DB_VERSION = "3";
+    var DB_VERSION = "4";
     var IMG = "https://static.webx.pk/files/87161/Images";
 
     var DEFAULT_CATEGORIES = [
@@ -300,7 +300,7 @@
             username: "techverseadmin",
             name: "TechVerse Admin",
             email: "admin@techverse.com",
-            password: "admin123",
+            password: "password123",
             role: "admin",
             address: "",
             city: "",

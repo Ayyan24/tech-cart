@@ -100,7 +100,7 @@ function injectNavbar(prefix, isRoot) {
 
         userAuthSection = `
             <div class="relative group">
-                <button class="flex items-center gap-2 text-slate-700 hover:text-sky-800 font-medium py-2 transition-colors">
+                <button class="flex items-center gap-2 text-slate-700 hover:text-red-600 font-medium py-2 transition-colors">
                     <i class="fas fa-user-circle text-xl"></i>
                     <span class="max-w-[100px] truncate hidden md:inline text-sm">${currentUser.name}</span>
                 </button>
@@ -126,11 +126,11 @@ function injectNavbar(prefix, isRoot) {
     // Category menu list for the mega menu
     const megaMenuCategories = categories.map(cat => `
         <a href="${prefix}buyer/products.html?category=${cat.id}" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-slate-50 transition-colors group">
-            <div class="w-10 h-10 rounded-2xl brand-icon-soft flex items-center justify-center group-hover:bg-sky-800 group-hover:text-white transition-colors">
+            <div class="w-10 h-10 rounded-xl brand-icon-soft flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors">
                 <i class="fas ${cat.icon}"></i>
             </div>
             <div>
-                <p class="font-semibold text-slate-800 text-sm group-hover:text-sky-800 transition-colors">${cat.name}</p>
+                <p class="font-semibold text-slate-800 text-sm group-hover:text-red-600 transition-colors">${cat.name}</p>
                 <p class="text-xs text-slate-400">Explore premium devices</p>
             </div>
         </a>
@@ -154,7 +154,7 @@ function injectNavbar(prefix, isRoot) {
                     <span class="font-extrabold text-xl brand-text-primary">TechVerse<span class="brand-text-accent text-sm font-bold ml-1">.pk</span></span>
                 </a>
 
-                <form id="nav-search-form" class="hidden md:flex flex-grow max-w-2xl border border-slate-200/80 rounded-2xl overflow-hidden bg-white/95 shadow-lg shadow-slate-200/40 focus-within:border-teal-500 transition-all">
+                <form id="nav-search-form" class="hidden md:flex flex-grow max-w-2xl border border-slate-200 rounded overflow-hidden bg-white shadow transition-all" style="focus-within:border-color:#f97316;">
                     <select id="nav-search-category" class="bg-slate-50 text-slate-600 px-3 text-xs font-semibold border-r border-slate-200 focus:outline-none">
                         <option value="all">All Categories</option>
                         ${categoryOptions}
@@ -164,23 +164,23 @@ function injectNavbar(prefix, isRoot) {
                 </form>
 
                 <div class="flex items-center gap-4 text-slate-600">
-                    <a href="${prefix}buyer/wishlist.html" class="relative hover:text-teal-500 py-2 transition-colors">
+                    <a href="${prefix}buyer/wishlist.html" class="relative hover:text-orange-500 py-2 transition-colors">
                         <i class="far fa-heart text-xl"></i>
                         <span id="wishlist-count" class="absolute -top-1 -right-2 brand-bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                     </a>
-                    <a href="${prefix}buyer/cart.html" class="relative hover:text-teal-500 py-2 transition-colors">
+                    <a href="${prefix}buyer/cart.html" class="relative hover:text-orange-500 py-2 transition-colors">
                         <i class="fas fa-shopping-cart text-xl"></i>
                         <span id="cart-count" class="absolute -top-1 -right-2 brand-bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                     </a>
                     ${userAuthSection}
-                    <button id="mobile-menu-btn" class="md:hidden hover:text-sky-900 transition-colors"><i class="fas fa-bars text-xl"></i></button>
+                    <button id="mobile-menu-btn" class="md:hidden hover:text-orange-500 transition-colors"><i class="fas fa-bars text-xl"></i></button>
                 </div>
             </div>
 
             <nav class="czone-nav-bar hidden md:block">
                 <div class="max-w-7xl mx-auto px-4 flex items-center gap-1">
                     <div class="relative nav-item-categories">
-                        <button class="brand-btn-accent text-white font-semibold text-sm px-5 py-2.5 rounded-t-2xl flex items-center gap-2">
+                        <button class="brand-btn-accent text-white font-semibold text-sm px-5 py-2.5 flex items-center gap-2" style="border-radius: 0;">
                             <i class="fas fa-bars"></i> All Categories <i class="fas fa-chevron-down text-[10px]"></i>
                         </button>
                         <div class="mega-menu absolute left-0 w-[600px] bg-white/95 text-slate-900 rounded-b-[24px] shadow-2xl p-5 border border-slate-200/80 grid grid-cols-2 gap-3 z-50 backdrop-blur">
@@ -242,10 +242,10 @@ function injectFooter(prefix, isRoot) {
                         TechVerse Market is Pakistan's leading multi-vendor IT & gaming store, delivering components, laptops, and custom gaming gear right to your doorstep.
                     </p>
                     <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-teal-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-teal-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-teal-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-teal-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -253,11 +253,11 @@ function injectFooter(prefix, isRoot) {
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 brand-border-accent pl-3">Popular Categories</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="${prefix}buyer/products.html?category=laptops" class="hover:text-teal-400 hover:underline transition-colors">Laptops</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=smartphones" class="hover:text-teal-400 hover:underline transition-colors">Smartphones</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=gaming" class="hover:text-teal-400 hover:underline transition-colors">Gaming Zone</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=components" class="hover:text-teal-400 hover:underline transition-colors">PC Components</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=storage" class="hover:text-teal-400 hover:underline transition-colors">Storage Devices</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=laptops" class="hover:text-orange-400 hover:underline transition-colors">Laptops</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=smartphones" class="hover:text-orange-400 hover:underline transition-colors">Smartphones</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=gaming" class="hover:text-orange-400 hover:underline transition-colors">Gaming Zone</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=components" class="hover:text-orange-400 hover:underline transition-colors">PC Components</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=storage" class="hover:text-orange-400 hover:underline transition-colors">Storage Devices</a></li>
                     </ul>
                 </div>
 
@@ -318,7 +318,7 @@ window.CartActions = {
                 text: "Please sign in to add products to your shopping cart.",
                 showCancelButton: true,
                 confirmButtonText: "Sign In",
-                confirmButtonColor: "#2563eb",
+                confirmButtonColor: "#0f3b5f",
                 cancelButtonColor: "#64748b"
             }).then((res) => {
                 if (res.isConfirmed) {
@@ -334,12 +334,7 @@ window.CartActions = {
         const product = products.find(p => p.id === productId);
         if (product) {
             if (product.stock <= 0) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Out of Stock",
-                    text: "This product is currently out of stock.",
-                    confirmButtonColor: "#2563eb"
-                });
+                Swal.fire({ icon: "error", title: "Out of Stock", text: "This product is currently out of stock.", confirmButtonColor: "#da251c" });
                 return;
             }
             window.TechVerseDB.addToCart(user.id, product, qty);
@@ -362,7 +357,7 @@ window.CartActions = {
                 text: "Please sign in to save products to your wishlist.",
                 showCancelButton: true,
                 confirmButtonText: "Sign In",
-                confirmButtonColor: "#2563eb",
+                confirmButtonColor: "#0f3b5f",
                 cancelButtonColor: "#64748b"
             }).then((res) => {
                 if (res.isConfirmed) {
@@ -391,7 +386,7 @@ window.CartActions = {
                     icon: "info",
                     title: "Already in Wishlist",
                     text: `${product.name} is already saved in your wishlist.`,
-                    confirmButtonColor: "#2563eb"
+                    confirmButtonColor: "#0f3b5f"
                 });
             }
         }

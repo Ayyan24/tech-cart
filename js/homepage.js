@@ -2,20 +2,21 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof AOS !== "undefined") {
-        AOS.init({ duration: 600, once: true, offset: 40 });
+        AOS.init({ duration: 550, once: true, offset: 30 });
     }
 
     if (typeof Swiper !== "undefined") {
         new Swiper(".hero-swiper", {
             loop: true,
-            autoplay: { delay: 5000, disableOnInteraction: false },
-            effect: "fade",
-            fadeEffect: { crossFade: true },
+            autoplay: { delay: 4500, disableOnInteraction: false },
+            effect: "slide",
+            speed: 600,
             pagination: { el: ".swiper-pagination", clickable: true },
             navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
         });
     }
 
+    loadSidebarCategories();
     loadCategories();
     loadFlashSale();
     loadSection("featured-products-grid", function (p) { return p.featured; }, 8);
@@ -28,6 +29,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var card = function (p) { return window.TechVerseUtils.createProductCard(p, "buyer/"); };
 
+// Build the left-side category sidebar (desktop)
+function loadSidebarCategories() {
+    var list = document.getElementById("sidebar-cat-list");
+    if (!list) return;
+
+    var cats = window.TechVerseDB.getCategories();
+    list.innerHTML = cats.map(function (cat) {
+        return (
+            '<li>' +
+                '<a href="buyer/products.html?category=' + cat.id + '">' +
+                    '<i class="fas ' + cat.icon + '"></i>' +
+                    cat.name +
+                    '<i class="fas fa-chevron-right" style="margin-left: auto; font-size: 9px; opacity: 0.5;"></i>' +
+                '</a>' +
+            '</li>'
+        );
+    }).join("");
+}
+
+// Horizontal category strip
 function loadCategories() {
     var box = document.getElementById("categories-slider-container");
     if (!box) return;
@@ -36,8 +57,8 @@ function loadCategories() {
     box.innerHTML = cats.map(function (cat) {
         return (
             '<a href="buyer/products.html?category=' + cat.id + '" class="cat-card shrink-0">' +
-                '<img src="' + (cat.image || "") + '" alt="' + cat.name + '">' +
-                '<span class="text-xs font-semibold text-slate-700">' + cat.name + '</span>' +
+                '<img src="' + (cat.image || "") + '" alt="' + cat.name + '" loading="lazy">' +
+                '<span style="display: block; font-size: 11px; font-weight: 600; color: #333; margin-top: 4px;">' + cat.name + '</span>' +
             '</a>'
         );
     }).join("");
@@ -51,7 +72,9 @@ function loadSection(elementId, filterFn, limit) {
         .filter(function (p) { return p.status === "approved" && filterFn(p); })
         .slice(0, limit);
 
-    box.innerHTML = items.map(card).join("");
+    box.innerHTML = items.length
+        ? items.map(card).join("")
+        : '<p style="grid-column: 1/-1; text-align: center; padding: 24px; color: #999; font-size: 13px;">No products available.</p>';
 }
 
 function loadFlashSale() {
@@ -63,7 +86,7 @@ function loadFlashSale() {
         .slice(0, 3);
 
     box.innerHTML = items.map(function (p) {
-        return '<div class="flash-product-box">' + card(p).replace("czone-product-box", "czone-product-box h-full") + '</div>';
+        return '<div class="flash-product-box">' + card(p) + '</div>';
     }).join("");
 
     startCountdown();
@@ -93,10 +116,12 @@ function setupTrendingTabs() {
         btn.addEventListener("click", function () {
             tabs.forEach(function (b) {
                 b.classList.remove("active-tab");
-                b.classList.add("text-slate-600");
+                b.style.background = "#f5f5f5";
+                b.style.color = "#333";
             });
             btn.classList.add("active-tab");
-            btn.classList.remove("text-slate-600");
+            btn.style.background = "";
+            btn.style.color = "";
             loadTrending(btn.getAttribute("data-tab"));
         });
     });
@@ -114,7 +139,7 @@ function loadTrending(tab) {
 
     box.innerHTML = items.length
         ? items.map(card).join("")
-        : '<p class="col-span-full text-center py-10 text-slate-400">No products in this category.</p>';
+        : '<p style="grid-column: 1/-1; text-align: center; padding: 24px; color: #999; font-size: 13px;">No products in this category.</p>';
 }
 
 function setupNewsletter() {
@@ -127,7 +152,7 @@ function setupNewsletter() {
             icon: "success",
             title: "Subscribed!",
             text: "Thank you for subscribing to our newsletter.",
-            confirmButtonColor: "#132238"
+            confirmButtonColor: "#da251c"
         });
         form.querySelector("input[type='email']").value = "";
     });
