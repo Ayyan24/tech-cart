@@ -1,8 +1,8 @@
-// TechVerse Market Wishlist Operations
+// Techcart Wishlist Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user) {
         Swal.fire({
             icon: "warning",
@@ -27,7 +27,7 @@ function renderWishlist(userId) {
 
     if (!wrapper || !tbody) return;
 
-    const wishlist = window.TechVerseDB.getWishlist(userId);
+    const wishlist = window.TechcartDB.getWishlist(userId);
 
     if (wishlist.length === 0) {
         wrapper.classList.add("hidden");
@@ -71,7 +71,7 @@ function renderWishlist(userId) {
 
 // Move to Cart Action
 window.moveToCart = (userId, itemId) => {
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const product = products.find(p => p.id === itemId);
 
     if (product) {
@@ -86,12 +86,12 @@ window.moveToCart = (userId, itemId) => {
         }
 
         // Add to Cart
-        window.TechVerseDB.addToCart(userId, product, 1);
+        window.TechcartDB.addToCart(userId, product, 1);
 
         // Delete from Wishlist
-        let wishlist = window.TechVerseDB.getWishlist(userId);
+        let wishlist = window.TechcartDB.getWishlist(userId);
         wishlist = wishlist.filter(i => i.id !== itemId);
-        window.TechVerseDB.saveWishlist(userId, wishlist);
+        window.TechcartDB.saveWishlist(userId, wishlist);
 
         // Trigger Badge Updates
         window.dispatchEvent(new Event("wishlist-updated"));
@@ -111,9 +111,9 @@ window.moveToCart = (userId, itemId) => {
 
 // Remove Wishlist Item
 window.removeWishlistItem = (userId, itemId) => {
-    let wishlist = window.TechVerseDB.getWishlist(userId);
+    let wishlist = window.TechcartDB.getWishlist(userId);
     wishlist = wishlist.filter(i => i.id !== itemId);
-    window.TechVerseDB.saveWishlist(userId, wishlist);
+    window.TechcartDB.saveWishlist(userId, wishlist);
 
     window.dispatchEvent(new Event("wishlist-updated"));
     renderWishlist(userId);

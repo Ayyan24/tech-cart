@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             var loginId = document.getElementById("email").value.trim().toLowerCase();
             var password = document.getElementById("password").value;
-            var users = window.TechVerseDB.getUsers();
+            var users = window.TechcartDB.getUsers();
             var user = users.find(function (u) {
                 var userEmail = (u.email || "").toLowerCase();
                 var userName = (u.username || "").toLowerCase();
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            window.TechVerseDB.setCurrentUser(user);
+            window.TechcartDB.setCurrentUser(user);
             Swal.fire({ icon: "success", title: "Welcome, " + user.name + "!", showConfirmButton: false, timer: 1500 })
                 .then(function () { redirectByRole(user.role, prefix); });
         });
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            var users = window.TechVerseDB.getUsers();
+            var users = window.TechcartDB.getUsers();
             if (users.some(function (u) { return u.email.toLowerCase() === email; })) {
                 Swal.fire({ icon: "error", title: "Email already registered", confirmButtonColor: "#132238" });
                 return;
@@ -68,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (role === "vendor") newUser.shopName = name + "'s Shop";
 
             users.push(newUser);
-            window.TechVerseDB.saveUsers(users);
-            window.TechVerseDB.setCurrentUser(newUser);
+            window.TechcartDB.saveUsers(users);
+            window.TechcartDB.setCurrentUser(newUser);
 
             Swal.fire({ icon: "success", title: "Account Created!", showConfirmButton: false, timer: 1500 })
                 .then(function () { redirectByRole(role, prefix); });

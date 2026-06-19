@@ -1,4 +1,4 @@
-// TechVerse Market — Data storage (localStorage)
+// Techcart — Data storage (localStorage)
 
 (function () {
     var DB_VERSION = "4";
@@ -291,15 +291,15 @@
         var users = JSON.parse(localStorage.getItem("tv_users")) || [];
         var adminIndex = users.findIndex(function (user) {
             return user.role === "admin" ||
-                user.username === "techverseadmin" ||
-                user.email === "admin@techverse.com";
+                user.username === "Techcartadmin" ||
+                user.email === "admin@Techcart.com";
         });
 
         var adminUser = {
-            id: "u_admin_techverse",
-            username: "techverseadmin",
-            name: "TechVerse Admin",
-            email: "admin@techverse.com",
+            id: "u_admin_Techcart",
+            username: "Techcartadmin",
+            name: "Techcart Admin",
+            email: "admin@Techcart.com",
             password: "password123",
             role: "admin",
             address: "",
@@ -346,7 +346,7 @@
 
     initDB();
 
-    window.TechVerseDB = {
+    window.TechcartDB = {
         getUsers: function () { return JSON.parse(localStorage.getItem("tv_users")); },
         saveUsers: function (users) { localStorage.setItem("tv_users", JSON.stringify(users)); },
 

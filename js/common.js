@@ -1,4 +1,4 @@
-// TechVerse Market Common Layout & Event Handler
+// Techcart Common Layout & Event Handler
 
 document.addEventListener("DOMContentLoaded", () => {
     // Determine path prefix based on file depth
@@ -19,15 +19,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Register active user UI controls
     setupUserSessionControls(prefix);
+
+    // Initialize Dark Mode
+    if (localStorage.getItem('techcart-dark-mode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
 });
 
 // Update Cart Badge Count
 function updateCartCount() {
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     const countEl = document.getElementById("cart-count");
     if (!countEl) return;
     if (user) {
-        const cart = window.TechVerseDB.getCart(user.id);
+        const cart = window.TechcartDB.getCart(user.id);
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         countEl.textContent = totalItems;
         countEl.classList.toggle("hidden", totalItems === 0);
@@ -39,11 +44,11 @@ function updateCartCount() {
 
 // Update Wishlist Badge Count
 function updateWishlistCount() {
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     const countEl = document.getElementById("wishlist-count");
     if (!countEl) return;
     if (user) {
-        const wishlist = window.TechVerseDB.getWishlist(user.id);
+        const wishlist = window.TechcartDB.getWishlist(user.id);
         countEl.textContent = wishlist.length;
         countEl.classList.toggle("hidden", wishlist.length === 0);
     } else {
@@ -58,7 +63,7 @@ function setupUserSessionControls(prefix) {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            window.TechVerseDB.logout();
+            window.TechcartDB.logout();
             Swal.fire({ icon: "success", title: "Logged Out", showConfirmButton: false, timer: 1500 })
                 .then(function () { window.location.href = prefix + "index.html"; });
         });
@@ -81,6 +86,21 @@ function setupUserSessionControls(prefix) {
             window.location.href = prefix + "buyer/products.html?search=" + encodeURIComponent(q) + "&category=" + encodeURIComponent(cat);
         });
     }
+
+    var darkModeToggle = document.getElementById("dark-mode-toggle");
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("techcart-dark-mode", isDark);
+            darkModeToggle.innerHTML = isDark ? '<i class="fas fa-sun text-xl"></i>' : '<i class="fas fa-moon text-xl"></i>';
+        });
+        
+        // Set initial icon
+        if (document.body.classList.contains("dark-mode")) {
+            darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+        }
+    }
 }
 
 // Navbar template builder
@@ -88,8 +108,8 @@ function injectNavbar(prefix, isRoot) {
     const container = document.getElementById("navbar-container");
     if (!container) return;
 
-    const currentUser = window.TechVerseDB.getCurrentUser();
-    const categories = window.TechVerseDB.getCategories();
+    const currentUser = window.TechcartDB.getCurrentUser();
+    const categories = window.TechcartDB.getCategories();
 
     // User section display
     let userAuthSection = "";
@@ -141,7 +161,7 @@ function injectNavbar(prefix, isRoot) {
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
                 <div class="flex items-center gap-4">
                     <span><i class="fas fa-phone-alt mr-1.5"></i>+92 21 3481 7355</span>
-                    <span><i class="fas fa-envelope mr-1.5"></i>support@techverse.com</span>
+                    <span><i class="fas fa-envelope mr-1.5"></i>support@Techcart.com</span>
                 </div>
                 <span>Free delivery across Pakistan on orders above Rs. 50,000</span>
             </div>
@@ -151,10 +171,10 @@ function injectNavbar(prefix, isRoot) {
             <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
                 <a href="${prefix}index.html" class="flex items-center gap-2 shrink-0">
                     <div class="brand-btn-primary p-2.5 rounded-2xl text-white"><i class="fas fa-microchip text-lg"></i></div>
-                    <span class="font-extrabold text-xl brand-text-primary">TechVerse<span class="brand-text-accent text-sm font-bold ml-1">.pk</span></span>
+                    <span class="font-extrabold text-xl brand-text-primary">Techcart<span class="brand-text-accent text-sm font-bold ml-1">.pk</span></span>
                 </a>
 
-                <form id="nav-search-form" class="hidden md:flex flex-grow max-w-2xl border border-slate-200 rounded overflow-hidden bg-white shadow transition-all" style="focus-within:border-color:#f97316;">
+                <form id="nav-search-form" class="hidden md:flex flex-grow max-w-2xl border border-slate-200 rounded overflow-hidden bg-white shadow transition-all" style="focus-within:border-color:#0ea5e9;">
                     <select id="nav-search-category" class="bg-slate-50 text-slate-600 px-3 text-xs font-semibold border-r border-slate-200 focus:outline-none">
                         <option value="all">All Categories</option>
                         ${categoryOptions}
@@ -164,16 +184,19 @@ function injectNavbar(prefix, isRoot) {
                 </form>
 
                 <div class="flex items-center gap-4 text-slate-600">
-                    <a href="${prefix}buyer/wishlist.html" class="relative hover:text-orange-500 py-2 transition-colors">
+                    <a href="${prefix}buyer/wishlist.html" class="relative hover:text-sky-500 py-2 transition-colors">
                         <i class="far fa-heart text-xl"></i>
                         <span id="wishlist-count" class="absolute -top-1 -right-2 brand-bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                     </a>
-                    <a href="${prefix}buyer/cart.html" class="relative hover:text-orange-500 py-2 transition-colors">
+                    <a href="${prefix}buyer/cart.html" class="relative hover:text-sky-500 py-2 transition-colors">
                         <i class="fas fa-shopping-cart text-xl"></i>
                         <span id="cart-count" class="absolute -top-1 -right-2 brand-bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
                     </a>
                     ${userAuthSection}
-                    <button id="mobile-menu-btn" class="md:hidden hover:text-orange-500 transition-colors"><i class="fas fa-bars text-xl"></i></button>
+                    <button id="dark-mode-toggle" class="hover:text-sky-500 transition-colors py-2 ml-2">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="md:hidden hover:text-sky-500 transition-colors ml-2"><i class="fas fa-bars text-xl"></i></button>
                 </div>
             </div>
 
@@ -216,7 +239,7 @@ function injectNavbar(prefix, isRoot) {
     if (logoutMobileBtn) {
         logoutMobileBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            window.TechVerseDB.logout();
+            window.TechcartDB.logout();
             window.location.href = prefix + "index.html";
         });
     }
@@ -236,16 +259,16 @@ function injectFooter(prefix, isRoot) {
                         <div class="brand-btn-accent p-2 rounded-xl text-white">
                             <i class="fas fa-bolt"></i>
                         </div>
-                        <span class="font-extrabold text-xl tracking-tight text-white">TechVerse</span>
+                        <span class="font-extrabold text-xl tracking-tight text-white">Techcart</span>
                     </div>
                     <p class="text-sm leading-relaxed mb-4 text-slate-400">
-                        TechVerse Market is Pakistan's leading multi-vendor IT & gaming store, delivering components, laptops, and custom gaming gear right to your doorstep.
+                        Techcart is Pakistan's leading multi-vendor IT & gaming store, delivering components, laptops, and custom gaming gear right to your doorstep.
                     </p>
                     <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-orange-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-colors"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -253,11 +276,11 @@ function injectFooter(prefix, isRoot) {
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 brand-border-accent pl-3">Popular Categories</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="${prefix}buyer/products.html?category=laptops" class="hover:text-orange-400 hover:underline transition-colors">Laptops</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=smartphones" class="hover:text-orange-400 hover:underline transition-colors">Smartphones</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=gaming" class="hover:text-orange-400 hover:underline transition-colors">Gaming Zone</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=components" class="hover:text-orange-400 hover:underline transition-colors">PC Components</a></li>
-                        <li><a href="${prefix}buyer/products.html?category=storage" class="hover:text-orange-400 hover:underline transition-colors">Storage Devices</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=laptops" class="hover:text-sky-400 hover:underline transition-colors">Laptops</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=smartphones" class="hover:text-sky-400 hover:underline transition-colors">Smartphones</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=gaming" class="hover:text-sky-400 hover:underline transition-colors">Gaming Zone</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=components" class="hover:text-sky-400 hover:underline transition-colors">PC Components</a></li>
+                        <li><a href="${prefix}buyer/products.html?category=storage" class="hover:text-sky-400 hover:underline transition-colors">Storage Devices</a></li>
                     </ul>
                 </div>
 
@@ -287,7 +310,7 @@ function injectFooter(prefix, isRoot) {
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fas fa-envelope brand-text-accent"></i>
-                            <span>sales@techverse.com</span>
+                            <span>sales@Techcart.com</span>
                         </li>
                     </ul>
                 </div>
@@ -295,7 +318,7 @@ function injectFooter(prefix, isRoot) {
 
             <!-- Footer Bottom -->
             <div class="max-w-7xl mx-auto px-4 pt-8 border-t border-slate-900 text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p>&copy; 2026 TechVerse Market. All Rights Reserved. Designed by Antigravity.</p>
+                <p>&copy; 2026 Techcart. All Rights Reserved. Designed by Antigravity.</p>
                 <div class="flex gap-4">
                     <i class="fab fa-cc-visa text-2xl hover:text-white transition-colors"></i>
                     <i class="fab fa-cc-mastercard text-2xl hover:text-white transition-colors"></i>
@@ -310,7 +333,7 @@ function injectFooter(prefix, isRoot) {
 // Global Cart & Wishlist Actions
 window.CartActions = {
     addToCart: (productId, qty = 1) => {
-        const user = window.TechVerseDB.getCurrentUser();
+        const user = window.TechcartDB.getCurrentUser();
         if (!user) {
             Swal.fire({
                 icon: "warning",
@@ -330,14 +353,14 @@ window.CartActions = {
             return;
         }
 
-        const products = window.TechVerseDB.getProducts();
+        const products = window.TechcartDB.getProducts();
         const product = products.find(p => p.id === productId);
         if (product) {
             if (product.stock <= 0) {
                 Swal.fire({ icon: "error", title: "Out of Stock", text: "This product is currently out of stock.", confirmButtonColor: "#da251c" });
                 return;
             }
-            window.TechVerseDB.addToCart(user.id, product, qty);
+            window.TechcartDB.addToCart(user.id, product, qty);
             Swal.fire({
                 icon: "success",
                 title: "Added to Cart",
@@ -349,7 +372,7 @@ window.CartActions = {
     },
 
     addToWishlist: (productId) => {
-        const user = window.TechVerseDB.getCurrentUser();
+        const user = window.TechcartDB.getCurrentUser();
         if (!user) {
             Swal.fire({
                 icon: "warning",
@@ -369,10 +392,10 @@ window.CartActions = {
             return;
         }
 
-        const products = window.TechVerseDB.getProducts();
+        const products = window.TechcartDB.getProducts();
         const product = products.find(p => p.id === productId);
         if (product) {
-            const added = window.TechVerseDB.addToWishlist(user.id, product);
+            const added = window.TechcartDB.addToWishlist(user.id, product);
             if (added) {
                 Swal.fire({
                     icon: "success",

@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
     setupNewsletter();
 });
 
-var card = function (p) { return window.TechVerseUtils.createProductCard(p, "buyer/"); };
+var card = function (p) { return window.TechcartUtils.createProductCard(p, "buyer/"); };
 
 // Build the left-side category sidebar (desktop)
 function loadSidebarCategories() {
     var list = document.getElementById("sidebar-cat-list");
     if (!list) return;
 
-    var cats = window.TechVerseDB.getCategories();
+    var cats = window.TechcartDB.getCategories();
     list.innerHTML = cats.map(function (cat) {
         return (
             '<li>' +
@@ -53,7 +53,7 @@ function loadCategories() {
     var box = document.getElementById("categories-slider-container");
     if (!box) return;
 
-    var cats = window.TechVerseDB.getCategories();
+    var cats = window.TechcartDB.getCategories();
     box.innerHTML = cats.map(function (cat) {
         return (
             '<a href="buyer/products.html?category=' + cat.id + '" class="cat-card shrink-0">' +
@@ -68,7 +68,7 @@ function loadSection(elementId, filterFn, limit) {
     var box = document.getElementById(elementId);
     if (!box) return;
 
-    var items = window.TechVerseDB.getProducts()
+    var items = window.TechcartDB.getProducts()
         .filter(function (p) { return p.status === "approved" && filterFn(p); })
         .slice(0, limit);
 
@@ -81,7 +81,7 @@ function loadFlashSale() {
     var box = document.getElementById("flash-sale-products");
     if (!box) return;
 
-    var items = window.TechVerseDB.getProducts()
+    var items = window.TechcartDB.getProducts()
         .filter(function (p) { return p.flashSale && p.status === "approved"; })
         .slice(0, 3);
 
@@ -131,7 +131,7 @@ function loadTrending(tab) {
     var box = document.getElementById("trending-products-grid");
     if (!box) return;
 
-    var items = window.TechVerseDB.getProducts().filter(function (p) {
+    var items = window.TechcartDB.getProducts().filter(function (p) {
         if (p.status !== "approved") return false;
         if (tab === "all") return true;
         return p.category === tab;

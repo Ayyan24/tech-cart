@@ -1,8 +1,8 @@
-// TechVerse Market Checkout Operations
+// Techcart Checkout Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user) {
         Swal.fire({
             icon: "warning",
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 2. Retrieve Cart
-    const cart = window.TechVerseDB.getCart(user.id);
+    const cart = window.TechcartDB.getCart(user.id);
     if (cart.length === 0) {
         Swal.fire({
             icon: "info",
@@ -130,31 +130,31 @@ function handleCheckoutSubmit(user, cart) {
     };
 
     // Save to Database
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     orders.unshift(newOrder);
-    window.TechVerseDB.saveOrders(orders);
+    window.TechcartDB.saveOrders(orders);
 
     // Save shipping details on User profile if empty
-    const users = window.TechVerseDB.getUsers();
+    const users = window.TechcartDB.getUsers();
     const dbUser = users.find(u => u.id === user.id);
     if (dbUser) {
         dbUser.name = name;
         dbUser.phone = phone;
         dbUser.address = address;
         dbUser.city = city;
-        window.TechVerseDB.saveUsers(users);
-        window.TechVerseDB.setCurrentUser(dbUser); // reload session details
+        window.TechcartDB.saveUsers(users);
+        window.TechcartDB.setCurrentUser(dbUser); // reload session details
     }
 
     // Clear Cart
-    window.TechVerseDB.saveCart(user.id, []);
+    window.TechcartDB.saveCart(user.id, []);
     window.dispatchEvent(new Event("cart-updated"));
 
     // Success notification
     Swal.fire({
         icon: "success",
         title: "Order Placed Successfully!",
-        text: `Your Order ID is ${orderId}. Thank you for choosing TechVerse.`,
+        text: `Your Order ID is ${orderId}. Thank you for choosing Techcart.`,
         confirmButtonColor: "#132238",
         timer: 3000,
         showConfirmButton: true

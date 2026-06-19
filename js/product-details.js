@@ -1,4 +1,4 @@
-// TechVerse Market Product Details Operations
+// Techcart Product Details Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Retrieve product ID from URL
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const product = products.find(p => p.id === productId);
 
     if (!product) {
@@ -61,7 +61,7 @@ function renderStars(rating) {
 // Render Core Elements
 function renderProductDetails(product) {
     // Page Title
-    document.title = `${product.name} - TechVerse Market`;
+    document.title = `${product.name} - Techcart`;
 
     // Breadcrumb
     const breadcrumbName = document.getElementById("breadcrumb-product-name");
@@ -255,7 +255,7 @@ function setupActionListeners(product) {
 
     if (reviewBtn) {
         reviewBtn.addEventListener("click", () => {
-            const user = window.TechVerseDB.getCurrentUser();
+            const user = window.TechcartDB.getCurrentUser();
             if (!user) {
                 Swal.fire({
                     icon: "warning",
@@ -336,6 +336,6 @@ function loadRelatedProducts(currentProduct, allProducts) {
     }
 
     grid.innerHTML = related.map(function (p) {
-        return window.TechVerseUtils.createProductCard(p, "");
+        return window.TechcartUtils.createProductCard(p, "");
     }).join("");
 }

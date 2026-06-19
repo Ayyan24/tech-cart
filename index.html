@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechVerse Market - Pakistan's Premium IT Store</title>
-    <meta name="description" content="TechVerse Market — Pakistan's #1 multi-vendor IT store. Shop laptops, gaming PCs, monitors, components and accessories with best prices and fast delivery.">
+    <title>Techcart - Pakistan's Premium IT Store</title>
+    <meta name="description" content="Techcart — Pakistan's #1 multi-vendor IT store. Shop laptops, gaming PCs, monitors, components and accessories with best prices and fast delivery.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
@@ -13,9 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* Trending tab */
-        .active-tab { background: #f97316; color: white; }
+        .active-tab { background: #0ea5e9; color: white; }
         .trending-tab-btn { padding: 7px 16px; border-radius: 2px; font-size: 12px; font-weight: 600; transition: all 0.2s ease; border: 1px solid #e2e4ed; }
-        .trending-tab-btn:not(.active-tab):hover { background: rgba(249,115,22,0.1); color: #f97316; border-color: #f97316; }
+        .trending-tab-btn:not(.active-tab):hover { background: rgba(249,115,22,0.1); color: #0ea5e9; border-color: #0ea5e9; }
 
         /* Hero slider covers full height of sidebar */
         .hero-slider-wrapper { flex: 1; min-width: 0; }
@@ -61,37 +61,27 @@
 
     <main class="flex-grow">
 
-        <!-- ============ HERO + SIDEBAR LAYOUT ============ -->
-        <div style="background: #fff; border-bottom: 1px solid #e0e0e0;">
-            <div class="czone-home-layout" style="padding-top: 0; padding-bottom: 0; max-width: 1280px; margin: 0 auto; padding-left: 16px; padding-right: 16px; display: flex; gap: 0; align-items: stretch;">
+        <!-- ============ HERO LAYOUT ============ -->
+        <div style="background: var(--bg-light);">
+            <div style="max-width: 1400px; margin: 0 auto; padding: 24px 16px; display: flex; flex-direction: column; gap: 24px;">
 
-                <!-- LEFT: Category Sidebar (desktop only) -->
-                <div class="czone-sidebar-cats" style="align-self: stretch;">
-                    <div class="czone-sidebar-header">
-                        <i class="fas fa-bars"></i> All Categories
-                    </div>
-                    <ul id="sidebar-cat-list">
-                        <!-- JS injects category links here -->
-                    </ul>
-                </div>
-
-                <!-- RIGHT: Hero Slider + Promo Banners -->
-                <div class="hero-slider-wrapper">
+                <!-- Hero Slider -->
+                <div class="hero-slider-wrapper w-full shadow-2xl rounded-2xl overflow-hidden">
                     <!-- Main hero slider -->
-                    <div class="swiper hero-swiper" style="border-radius: 0; height: 360px;">
+                    <div class="swiper hero-swiper" style="height: 480px;">
                         <div class="swiper-wrapper">
 
                             <!-- Slide 1: Laptops -->
-                            <div class="swiper-slide" style="background: #0f0d2e;">
+                            <div class="swiper-slide" style="background: #0f172a;">
                                 <div style="display: flex; align-items: center; height: 100%; position: relative; overflow: hidden;">
                                     <img src="https://static.webx.pk/files/87161/Images/L04-slider-02-87409-161025040249_w_1090_h_600-87161-101125115714_w_1090_h_600.avif"
                                          alt="Latest Laptops" style="position: absolute; right: 0; top: 0; height: 100%; width: 60%; object-fit: cover; object-position: center left;">
-                                    <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #0f0d2e 38%, transparent 75%);"></div>
+                                    <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #0f172a 38%, transparent 75%);"></div>
                                     <div style="position: relative; padding: 0 36px; z-index: 2; color: white; max-width: 420px;">
-                                        <span style="background: #f97316; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">New Arrivals</span>
-                                        <h2 style="font-size: 26px; font-weight: 800; margin: 10px 0 8px; line-height: 1.2;">Latest Laptops<br>for Work & Gaming</h2>
+                                        <span style="background: #0ea5e9; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">New Arrivals</span>
+                                        <h2 class="outfit-font" style="font-size: 42px; font-weight: 800; margin: 10px 0 12px; line-height: 1.1;">Latest Laptops<br>for Work & Gaming</h2>
                                         <p style="font-size: 13px; opacity: 0.8; margin-bottom: 16px;">Intel Core Ultra • RTX 50 Series • From Rs. 89,990</p>
-                                        <a href="buyer/products.html?category=laptops" style="display: inline-block; background: linear-gradient(135deg,#f97316,#ea6c0a); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Laptops →</a>
+                                        <a href="buyer/products.html?category=laptops" style="display: inline-block; background: linear-gradient(135deg,#0ea5e9,#0284c7); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Laptops →</a>
                                     </div>
                                 </div>
                             </div>
@@ -103,10 +93,10 @@
                                          alt="Gaming Monitors" style="position: absolute; right: 0; top: 0; height: 100%; width: 65%; object-fit: cover; object-position: left;">
                                     <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #100f2e 38%, transparent 72%);"></div>
                                     <div style="position: relative; padding: 0 36px; z-index: 2; color: white; max-width: 420px;">
-                                        <span style="background: #f97316; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Hot Deal</span>
-                                        <h2 style="font-size: 26px; font-weight: 800; margin: 10px 0 8px; line-height: 1.2;">Massive Monitor<br>Collection</h2>
+                                        <span style="background: #0ea5e9; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Hot Deal</span>
+                                        <h2 class="outfit-font" style="font-size: 42px; font-weight: 800; margin: 10px 0 12px; line-height: 1.1;">Massive Monitor<br>Collection</h2>
                                         <p style="font-size: 13px; opacity: 0.8; margin-bottom: 16px;">180Hz • QHD • Curved • FreeSync — Unbeatable Prices!</p>
-                                        <a href="buyer/products.html?category=monitors" style="display: inline-block; background: linear-gradient(135deg,#f97316,#ea6c0a); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Monitors →</a>
+                                        <a href="buyer/products.html?category=monitors" style="display: inline-block; background: linear-gradient(135deg,#0ea5e9,#0284c7); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Monitors →</a>
                                     </div>
                                 </div>
                             </div>
@@ -118,25 +108,25 @@
                                          alt="Gaming Consoles" style="position: absolute; right: 60px; top: 50%; transform: translateY(-50%); height: 75%; object-fit: contain; object-position: center;">
                                     <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #130f2e 40%, transparent 80%);"></div>
                                     <div style="position: relative; padding: 0 36px; z-index: 2; color: white; max-width: 420px;">
-                                        <span style="background: #f97316; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Gaming Zone</span>
-                                        <h2 style="font-size: 26px; font-weight: 800; margin: 10px 0 8px; line-height: 1.2;">PlayStation • Xbox<br>Nintendo Switch</h2>
+                                        <span style="background: #0ea5e9; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Gaming Zone</span>
+                                        <h2 class="outfit-font" style="font-size: 42px; font-weight: 800; margin: 10px 0 12px; line-height: 1.1;">PlayStation • Xbox<br>Nintendo Switch</h2>
                                         <p style="font-size: 13px; opacity: 0.8; margin-bottom: 16px;">Every Console. Every Story. One Destination.</p>
-                                        <a href="buyer/products.html?category=gaming" style="display: inline-block; background: linear-gradient(135deg,#f97316,#ea6c0a); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Gaming →</a>
+                                        <a href="buyer/products.html?category=gaming" style="display: inline-block; background: linear-gradient(135deg,#0ea5e9,#0284c7); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Gaming →</a>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Slide 4: Sony Headphones -->
-                            <div class="swiper-slide" style="background: #0f0d2e;">
+                            <div class="swiper-slide" style="background: #0f172a;">
                                 <div style="display: flex; align-items: center; height: 100%; position: relative; overflow: hidden;">
                                     <img src="https://static.webx.pk/files/87161/Images/sony-87161-241225064842_w_1600_h_853.avif"
                                          alt="Sony Headphones" style="position: absolute; right: 0; top: 0; height: 100%; width: 65%; object-fit: cover; object-position: left;">
-                                    <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #0f0d2e 38%, transparent 72%);"></div>
+                                    <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: linear-gradient(90deg, #0f172a 38%, transparent 72%);"></div>
                                     <div style="position: relative; padding: 0 36px; z-index: 2; color: white; max-width: 420px;">
-                                        <span style="background: #f97316; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Premium Audio</span>
-                                        <h2 style="font-size: 26px; font-weight: 800; margin: 10px 0 8px; line-height: 1.2;">Immerse Yourself<br>in Pure Sound</h2>
+                                        <span style="background: #0ea5e9; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.05em;">Premium Audio</span>
+                                        <h2 class="outfit-font" style="font-size: 42px; font-weight: 800; margin: 10px 0 12px; line-height: 1.1;">Immerse Yourself<br>in Pure Sound</h2>
                                         <p style="font-size: 13px; opacity: 0.8; margin-bottom: 16px;">Sony WH-1000XM6 — 30H Battery • 12 Mics • Noise Cancel</p>
-                                        <a href="buyer/products.html?category=accessories" style="display: inline-block; background: linear-gradient(135deg,#f97316,#ea6c0a); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Audio →</a>
+                                        <a href="buyer/products.html?category=accessories" style="display: inline-block; background: linear-gradient(135deg,#0ea5e9,#0284c7); color: white; padding: 10px 22px; font-weight: 700; font-size: 13px; border-radius: 2px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(249,115,22,0.5);">Shop Audio →</a>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +175,7 @@
 
                 <!-- Timer Panel -->
                 <div style="color: white;">
-                    <span style="background: linear-gradient(135deg,#f97316,#ea6c0a); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 12px;">⚡ Flash Sale</span>
+                    <span style="background: linear-gradient(135deg,#0ea5e9,#0284c7); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 12px;">⚡ Flash Sale</span>
                     <h2 style="font-size: 22px; font-weight: 800; margin: 0 0 8px;">Limited Time<br>Offers</h2>
                     <p style="font-size: 12px; opacity: 0.7; margin-bottom: 18px;">Hand-picked deals ending soon. Limited stock!</p>
                     <div style="display: flex; gap: 8px;">
@@ -289,7 +279,7 @@
                 <p style="font-size: 13px; opacity: 0.75; margin-bottom: 20px;">Get product updates, restock alerts, and exclusive deals.</p>
                 <form id="newsletter-form" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
                     <input type="email" required placeholder="Enter your email address..." style="flex: 1; min-width: 200px; padding: 11px 16px; border: none; border-radius: 2px; font-size: 13px; color: #111; outline: none;">
-                <button type="submit" style="background: linear-gradient(135deg,#f97316,#ea6c0a); color: white; padding: 11px 22px; font-weight: 700; font-size: 13px; border: none; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.04em;">Subscribe</button>
+                <button type="submit" style="background: linear-gradient(135deg,#0ea5e9,#0284c7); color: white; padding: 11px 22px; font-weight: 700; font-size: 13px; border: none; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.04em;">Subscribe</button>
                 </form>
             </div>
         </section>

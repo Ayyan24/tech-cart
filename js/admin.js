@@ -1,8 +1,8 @@
-// TechVerse Market Admin Panel Operations
+// Techcart Admin Panel Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in and has ADMIN role
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user || user.role !== "admin") {
         Swal.fire({
             icon: "error",
@@ -53,7 +53,7 @@ function injectAdminHeader(user) {
                     <div class="brand-btn-accent p-2 rounded-xl text-white">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <span class="font-extrabold text-lg tracking-tight text-white">TechVerse <span class="text-teal-300 font-medium text-xs font-bold">ADMIN</span></span>
+                    <span class="font-extrabold text-lg tracking-tight text-white">Techcart <span class="text-teal-300 font-medium text-xs font-bold">ADMIN</span></span>
                 </a>
             </div>
             
@@ -118,7 +118,7 @@ function injectAdminSidebar() {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            window.TechVerseDB.logout();
+            window.TechcartDB.logout();
             window.location.href = "../index.html";
         });
     }
@@ -126,10 +126,10 @@ function injectAdminSidebar() {
 
 // 1. Dashboard Operations
 function loadAdminDashboard() {
-    const users = window.TechVerseDB.getUsers();
-    const products = window.TechVerseDB.getProducts();
-    const orders = window.TechVerseDB.getOrders();
-    const apps = window.TechVerseDB.getApplications();
+    const users = window.TechcartDB.getUsers();
+    const products = window.TechcartDB.getProducts();
+    const orders = window.TechcartDB.getOrders();
+    const apps = window.TechcartDB.getApplications();
 
     const totalUsers = users.length;
     const totalVendors = users.filter(u => u.role === "vendor").length;
@@ -235,7 +235,7 @@ function loadAdminVendorApprovals() {
 
     if (!tbody) return;
 
-    const apps = window.TechVerseDB.getApplications();
+    const apps = window.TechcartDB.getApplications();
 
     if (apps.length === 0) {
         if (tableContainer) tableContainer.classList.add("hidden");
@@ -274,16 +274,16 @@ function loadAdminVendorApprovals() {
 
 // Approval action
 window.updateVendorApp = (appId, action) => {
-    const apps = window.TechVerseDB.getApplications();
+    const apps = window.TechcartDB.getApplications();
     const app = apps.find(a => a.id === appId);
 
     if (app) {
         app.status = action;
-        window.TechVerseDB.saveApplications(apps);
+        window.TechcartDB.saveApplications(apps);
 
         // If approved, create/sync user account if they don't exist
         if (action === "Approved") {
-            const users = window.TechVerseDB.getUsers();
+            const users = window.TechcartDB.getUsers();
             const exists = users.some(u => u.email.toLowerCase() === app.email.toLowerCase());
             if (!exists) {
                 users.push({
@@ -297,7 +297,7 @@ window.updateVendorApp = (appId, action) => {
                     city: "",
                     phone: ""
                 });
-                window.TechVerseDB.saveUsers(users);
+                window.TechcartDB.saveUsers(users);
             }
         }
 
@@ -321,7 +321,7 @@ function loadAdminProductApprovals() {
 
     if (!tbody) return;
 
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const pendingProds = products.filter(p => p.status === "pending");
 
     if (pendingProds.length === 0) {
@@ -356,12 +356,12 @@ function loadAdminProductApprovals() {
 
 // Product status update
 window.updateProductStatus = (productId, newStatus) => {
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const product = products.find(p => p.id === productId);
 
     if (product) {
         product.status = newStatus;
-        window.TechVerseDB.saveProducts(products);
+        window.TechcartDB.saveProducts(products);
 
         Swal.fire({
             icon: "success",
@@ -379,7 +379,7 @@ function loadAdminUsers() {
     const tbody = document.getElementById("users-tbody");
     if (!tbody) return;
 
-    const users = window.TechVerseDB.getUsers();
+    const users = window.TechcartDB.getUsers();
 
     tbody.innerHTML = users.map(u => `
         <tr class="border-b border-slate-100">
@@ -398,7 +398,7 @@ function loadAdminUsers() {
 
 // Change Role helper
 window.editUserRole = (userId) => {
-    const users = window.TechVerseDB.getUsers();
+    const users = window.TechcartDB.getUsers();
     const user = users.find(u => u.id === userId);
 
     if (user) {
@@ -418,7 +418,7 @@ window.editUserRole = (userId) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 user.role = result.value;
-                window.TechVerseDB.saveUsers(users);
+                window.TechcartDB.saveUsers(users);
                 Swal.fire({
                     icon: "success",
                     title: "Role Updated",
@@ -443,9 +443,9 @@ window.deleteUser = (userId) => {
         confirmButtonText: "Yes, delete"
     }).then((result) => {
         if (result.isConfirmed) {
-            let users = window.TechVerseDB.getUsers();
+            let users = window.TechcartDB.getUsers();
             users = users.filter(u => u.id !== userId);
-            window.TechVerseDB.saveUsers(users);
+            window.TechcartDB.saveUsers(users);
             Swal.fire({
                 icon: "success",
                 title: "Deleted",
@@ -465,7 +465,7 @@ function loadAdminOrders() {
 
     if (!tbody) return;
 
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
 
     if (orders.length === 0) {
         if (tableContainer) tableContainer.classList.add("hidden");
@@ -522,7 +522,7 @@ window.viewAdminOrder = (orderId) => {
     const itemsContainer = document.getElementById("modal-items-container");
     const totalEl = document.getElementById("modal-total");
 
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const order = orders.find(o => o.id === orderId);
 
     if (order && modal) {
@@ -550,12 +550,12 @@ window.viewAdminOrder = (orderId) => {
 
 // Update order status helper
 window.updateAdminOrderStatus = (orderId, newStatus) => {
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const order = orders.find(o => o.id === orderId);
 
     if (order) {
         order.status = newStatus;
-        window.TechVerseDB.saveOrders(orders);
+        window.TechcartDB.saveOrders(orders);
         Swal.fire({
             icon: "success",
             title: "Order Status Processed",
@@ -572,7 +572,7 @@ function loadAdminCategories() {
     const tbody = document.getElementById("categories-tbody");
     if (!tbody) return;
 
-    const categories = window.TechVerseDB.getCategories();
+    const categories = window.TechcartDB.getCategories();
 
     tbody.innerHTML = categories.map(cat => `
         <tr class="border-b border-slate-100">
@@ -612,7 +612,7 @@ function loadAdminCategories() {
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    const cats = window.TechVerseDB.getCategories();
+                    const cats = window.TechcartDB.getCategories();
                     const newId = result.value.name.toLowerCase().replace(/\s+/g, "-");
                     
                     cats.push({
@@ -621,7 +621,7 @@ function loadAdminCategories() {
                         icon: result.value.icon
                     });
                     
-                    window.TechVerseDB.saveCategories(cats);
+                    window.TechcartDB.saveCategories(cats);
                     
                     Swal.fire({
                         icon: "success",
@@ -639,7 +639,7 @@ function loadAdminCategories() {
 
 // Edit category name
 window.editCategoryName = (catId) => {
-    const cats = window.TechVerseDB.getCategories();
+    const cats = window.TechcartDB.getCategories();
     const cat = cats.find(c => c.id === catId);
 
     if (cat) {
@@ -659,7 +659,7 @@ window.editCategoryName = (catId) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 cat.name = result.value.trim();
-                window.TechVerseDB.saveCategories(cats);
+                window.TechcartDB.saveCategories(cats);
                 Swal.fire({
                     icon: "success",
                     title: "Updated",
@@ -684,9 +684,9 @@ window.deleteCategory = (catId) => {
         confirmButtonText: "Yes, delete"
     }).then((result) => {
         if (result.isConfirmed) {
-            let cats = window.TechVerseDB.getCategories();
+            let cats = window.TechcartDB.getCategories();
             cats = cats.filter(c => c.id !== catId);
-            window.TechVerseDB.saveCategories(cats);
+            window.TechcartDB.saveCategories(cats);
             Swal.fire({
                 icon: "success",
                 title: "Deleted",
@@ -700,8 +700,8 @@ window.deleteCategory = (catId) => {
 
 // 7. Platform Reports operations
 function loadAdminReports() {
-    const products = window.TechVerseDB.getProducts();
-    const orders = window.TechVerseDB.getOrders();
+    const products = window.TechcartDB.getProducts();
+    const orders = window.TechcartDB.getOrders();
 
     const totalRevenue = orders.reduce((sum, o) => sum + o.amount, 0);
     const totalOrders = orders.length;

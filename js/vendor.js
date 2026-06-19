@@ -1,8 +1,8 @@
-// TechVerse Market Vendor Panel Operations
+// Techcart Vendor Panel Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in and has VENDOR role
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user || user.role !== "vendor") {
         Swal.fire({
             icon: "error",
@@ -51,7 +51,7 @@ function injectVendorHeader(user) {
                     <div class="bg-blue-600 p-2 rounded-xl text-white">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <span class="font-extrabold text-lg tracking-tight text-white">TechVerse <span class="text-blue-500 font-medium text-xs">VENDOR</span></span>
+                    <span class="font-extrabold text-lg tracking-tight text-white">Techcart <span class="text-blue-500 font-medium text-xs">VENDOR</span></span>
                 </a>
             </div>
             
@@ -117,7 +117,7 @@ function injectVendorSidebar() {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            window.TechVerseDB.logout();
+            window.TechcartDB.logout();
             window.location.href = "../index.html";
         });
     }
@@ -125,8 +125,8 @@ function injectVendorSidebar() {
 
 // 1. Dashboard Operations
 function loadVendorDashboard(vendorId) {
-    const products = window.TechVerseDB.getProducts();
-    const orders = window.TechVerseDB.getOrders();
+    const products = window.TechcartDB.getProducts();
+    const orders = window.TechcartDB.getOrders();
 
     // Vendor's products
     const vendorProds = products.filter(p => p.vendorId === vendorId);
@@ -242,7 +242,7 @@ function loadVendorDashboard(vendorId) {
 function loadVendorAddProduct(vendorId) {
     const categorySelect = document.getElementById("prod-category");
     if (categorySelect) {
-        const categories = window.TechVerseDB.getCategories();
+        const categories = window.TechcartDB.getCategories();
         categorySelect.innerHTML = categories.map(cat => `<option value="${cat.id}">${cat.name}</option>`).join("");
     }
 
@@ -284,9 +284,9 @@ function loadVendorAddProduct(vendorId) {
                 }
             };
 
-            const products = window.TechVerseDB.getProducts();
+            const products = window.TechcartDB.getProducts();
             products.push(newProduct);
-            window.TechVerseDB.saveProducts(products);
+            window.TechcartDB.saveProducts(products);
 
             Swal.fire({
                 icon: "success",
@@ -308,7 +308,7 @@ function loadVendorManageProducts(vendorId) {
 
     if (!tbody) return;
 
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const vendorProds = products.filter(p => p.vendorId === vendorId);
 
     if (vendorProds.length === 0) {
@@ -349,7 +349,7 @@ function loadVendorManageProducts(vendorId) {
 
 // Edit price helper
 window.editProductPrice = (productId) => {
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const product = products.find(p => p.id === productId);
 
     if (product) {
@@ -370,14 +370,14 @@ window.editProductPrice = (productId) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 product.price = parseInt(result.value);
-                window.TechVerseDB.saveProducts(products);
+                window.TechcartDB.saveProducts(products);
                 Swal.fire({
                     icon: "success",
                     title: "Price Updated",
                     showConfirmButton: false,
                     timer: 1200
                 });
-                const user = window.TechVerseDB.getCurrentUser();
+                const user = window.TechcartDB.getCurrentUser();
                 loadVendorManageProducts(user.id);
             }
         });
@@ -396,9 +396,9 @@ window.deleteProduct = (productId, vendorId) => {
         confirmButtonText: "Yes, delete it"
     }).then((result) => {
         if (result.isConfirmed) {
-            let products = window.TechVerseDB.getProducts();
+            let products = window.TechcartDB.getProducts();
             products = products.filter(p => p.id !== productId);
-            window.TechVerseDB.saveProducts(products);
+            window.TechcartDB.saveProducts(products);
             Swal.fire({
                 icon: "success",
                 title: "Deleted",
@@ -419,7 +419,7 @@ function loadVendorInventory(vendorId) {
 
     if (!tbody) return;
 
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const vendorProds = products.filter(p => p.vendorId === vendorId);
 
     if (vendorProds.length === 0) {
@@ -455,14 +455,14 @@ function loadVendorInventory(vendorId) {
 
 // Adjust Stock Helper
 window.adjustStock = (productId, amount, vendorId) => {
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const product = products.find(p => p.id === productId);
 
     if (product) {
         const newStock = product.stock + amount;
         if (newStock < 0) return;
         product.stock = newStock;
-        window.TechVerseDB.saveProducts(products);
+        window.TechcartDB.saveProducts(products);
         loadVendorInventory(vendorId);
     }
 };
@@ -475,8 +475,8 @@ function loadVendorOrders(vendorId) {
 
     if (!tbody) return;
 
-    const products = window.TechVerseDB.getProducts();
-    const orders = window.TechVerseDB.getOrders();
+    const products = window.TechcartDB.getProducts();
+    const orders = window.TechcartDB.getOrders();
 
     const vendorProds = products.filter(p => p.vendorId === vendorId);
     const vendorProdIds = vendorProds.map(p => p.id);
@@ -547,10 +547,10 @@ window.viewVendorOrder = (orderId, vendorId) => {
     const itemsContainer = document.getElementById("modal-items-container");
     const totalEl = document.getElementById("modal-total");
 
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const order = orders.find(o => o.id === orderId);
 
-    const products = window.TechVerseDB.getProducts();
+    const products = window.TechcartDB.getProducts();
     const vendorProds = products.filter(p => p.vendorId === vendorId);
     const vendorProdIds = vendorProds.map(p => p.id);
 
@@ -585,12 +585,12 @@ window.viewVendorOrder = (orderId, vendorId) => {
 
 // Update order status helper
 window.updateVendorOrderStatus = (orderId, newStatus) => {
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const order = orders.find(o => o.id === orderId);
 
     if (order) {
         order.status = newStatus;
-        window.TechVerseDB.saveOrders(orders);
+        window.TechcartDB.saveOrders(orders);
         Swal.fire({
             icon: "success",
             title: "Status Updated",
@@ -598,15 +598,15 @@ window.updateVendorOrderStatus = (orderId, newStatus) => {
             showConfirmButton: false,
             timer: 1200
         });
-        const user = window.TechVerseDB.getCurrentUser();
+        const user = window.TechcartDB.getCurrentUser();
         loadVendorOrders(user.id);
     }
 };
 
 // 6. Reports operations
 function loadVendorReports(vendorId) {
-    const products = window.TechVerseDB.getProducts();
-    const orders = window.TechVerseDB.getOrders();
+    const products = window.TechcartDB.getProducts();
+    const orders = window.TechcartDB.getOrders();
 
     const vendorProds = products.filter(p => p.vendorId === vendorId);
     const vendorProdIds = vendorProds.map(p => p.id);

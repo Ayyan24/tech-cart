@@ -1,8 +1,8 @@
-// TechVerse Market Profile Operations
+// Techcart Profile Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user) {
         Swal.fire({
             icon: "warning",
@@ -84,7 +84,7 @@ function setupFormSubmissions(currentUser) {
             const city = document.getElementById("profile-city").value.trim();
             const address = document.getElementById("profile-address").value.trim();
 
-            const users = window.TechVerseDB.getUsers();
+            const users = window.TechcartDB.getUsers();
             const user = users.find(u => u.id === currentUser.id);
 
             if (user) {
@@ -94,8 +94,8 @@ function setupFormSubmissions(currentUser) {
                 user.address = address;
 
                 // Save
-                window.TechVerseDB.saveUsers(users);
-                window.TechVerseDB.setCurrentUser(user);
+                window.TechcartDB.saveUsers(users);
+                window.TechcartDB.setCurrentUser(user);
 
                 // Update UI name
                 const asideName = document.getElementById("aside-username");
@@ -120,7 +120,7 @@ function setupFormSubmissions(currentUser) {
             const newPass = document.getElementById("profile-new-pass").value;
             const newPassConfirm = document.getElementById("profile-new-pass-confirm").value;
 
-            const users = window.TechVerseDB.getUsers();
+            const users = window.TechcartDB.getUsers();
             const user = users.find(u => u.id === currentUser.id);
 
             if (user) {
@@ -146,8 +146,8 @@ function setupFormSubmissions(currentUser) {
 
                 // Update password
                 user.password = newPass;
-                window.TechVerseDB.saveUsers(users);
-                window.TechVerseDB.setCurrentUser(user);
+                window.TechcartDB.saveUsers(users);
+                window.TechcartDB.setCurrentUser(user);
 
                 Swal.fire({
                     icon: "success",

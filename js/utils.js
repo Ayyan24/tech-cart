@@ -57,7 +57,7 @@
                 '</a>' +
                 '<div class="czone-product-body">' +
                     '<div class="czone-product-top">' +
-                        '<span class="czone-product-brand">' + (product.brand || 'TechVerse') + '</span>' +
+                        '<span class="czone-product-brand">' + (product.brand || 'Techcart') + '</span>' +
                         '<span class="czone-stock-pill ' + stockClass + '"><i class="fas fa-box"></i>' + stockLabel + '</span>' +
                     '</div>' +
                     '<a href="' + linkPrefix + 'product-details.html?id=' + product.id + '" class="czone-product-title">' + product.name + '</a>' +
@@ -75,7 +75,7 @@
         );
     }
 
-    window.TechVerseUtils = {
+    window.TechcartUtils = {
         formatPrice: formatPrice,
         renderStars: renderStars,
         getDiscountPercent: getDiscountPercent,

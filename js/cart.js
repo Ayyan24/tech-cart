@@ -1,8 +1,8 @@
-// TechVerse Market Cart Operations
+// Techcart Cart Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user) {
         Swal.fire({
             icon: "warning",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 confirmButtonText: "Yes, empty it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.TechVerseDB.saveCart(user.id, []);
+                    window.TechcartDB.saveCart(user.id, []);
                     window.dispatchEvent(new Event("cart-updated"));
                     renderCart(user.id);
                 }
@@ -49,7 +49,7 @@ function renderCart(userId) {
 
     if (!wrapper || !tbody) return;
 
-    const cart = window.TechVerseDB.getCart(userId);
+    const cart = window.TechcartDB.getCart(userId);
 
     if (cart.length === 0) {
         wrapper.classList.add("hidden");
@@ -106,7 +106,7 @@ function renderCart(userId) {
 
 // Update Quantity
 window.updateQty = (userId, itemId, delta) => {
-    const cart = window.TechVerseDB.getCart(userId);
+    const cart = window.TechcartDB.getCart(userId);
     const item = cart.find(i => i.id === itemId);
 
     if (item) {
@@ -125,7 +125,7 @@ window.updateQty = (userId, itemId, delta) => {
         }
 
         item.quantity = newQty;
-        window.TechVerseDB.saveCart(userId, cart);
+        window.TechcartDB.saveCart(userId, cart);
         window.dispatchEvent(new Event("cart-updated"));
         renderCart(userId);
     }
@@ -133,9 +133,9 @@ window.updateQty = (userId, itemId, delta) => {
 
 // Remove Cart Item
 window.removeCartItem = (userId, itemId) => {
-    let cart = window.TechVerseDB.getCart(userId);
+    let cart = window.TechcartDB.getCart(userId);
     cart = cart.filter(i => i.id !== itemId);
-    window.TechVerseDB.saveCart(userId, cart);
+    window.TechcartDB.saveCart(userId, cart);
     window.dispatchEvent(new Event("cart-updated"));
     renderCart(userId);
 };

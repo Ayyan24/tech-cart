@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderSidebar(filters) {
     var catBox = document.getElementById("sidebar-categories");
     var brandBox = document.getElementById("sidebar-brands");
-    var categories = window.TechVerseDB.getCategories();
-    var products = window.TechVerseDB.getProducts();
+    var categories = window.TechcartDB.getCategories();
+    var products = window.TechcartDB.getProducts();
     var brands = [];
 
     products.forEach(function (p) {
@@ -138,7 +138,7 @@ function renderCatalog(filters) {
     var summary = document.getElementById("catalog-count-summary");
     if (!grid) return;
 
-    var all = window.TechVerseDB.getProducts();
+    var all = window.TechcartDB.getProducts();
     var filtered = all.filter(function (p) {
         if (p.status !== "approved") return false;
         if (filters.categories.length && filters.categories.indexOf(p.category) === -1) return false;
@@ -172,6 +172,6 @@ function renderCatalog(filters) {
     grid.classList.remove("hidden");
     if (empty) empty.classList.add("hidden");
     grid.innerHTML = filtered.map(function (p) {
-        return window.TechVerseUtils.createProductCard(p, "");
+        return window.TechcartUtils.createProductCard(p, "");
     }).join("");
 }

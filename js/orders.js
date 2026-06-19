@@ -1,8 +1,8 @@
-// TechVerse Market Orders Operations
+// Techcart Orders Operations
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Ensure user is logged in
-    const user = window.TechVerseDB.getCurrentUser();
+    const user = window.TechcartDB.getCurrentUser();
     if (!user) {
         Swal.fire({
             icon: "warning",
@@ -41,7 +41,7 @@ function renderOrdersList(userId) {
 
     if (!tbody) return;
 
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const userOrders = orders.filter(o => o.buyerId === userId);
 
     if (userOrders.length === 0) {
@@ -89,7 +89,7 @@ window.openOrderDetails = (orderId) => {
 
     if (!modal) return;
 
-    const orders = window.TechVerseDB.getOrders();
+    const orders = window.TechcartDB.getOrders();
     const order = orders.find(o => o.id === orderId);
 
     if (order) {
